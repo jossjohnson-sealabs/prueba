@@ -1,18 +1,21 @@
-name: prueba
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Flujo de Trabajo Hola Mundo
+
+# Controla cuándo se ejecutará el flujo de trabajo
 on: [push]
+
+# Un flujo de trabajo se compone de uno o más trabajos que pueden ejecutarse secuencialmente o en paralelo
 jobs:
-  Explore-GitHub-Actions:
+  # Este flujo de trabajo contiene un solo trabajo llamado "saludar"
+  greet:
+    # El tipo de ejecutor en el que se ejecutará el trabajo
     runs-on: ubuntu-latest
+
+    # Los pasos representan una secuencia de tareas que se ejecutarán como parte del trabajo
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      # Verifica tu repositorio bajo $GITHUB_WORKSPACE, por lo que tu trabajo puede acceder a él
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
+
+      # Ejecuta un solo comando usando el shell del ejecutor
+      - name: Ejecutar un script de una línea
+        run: echo "Hola, Mundo!"
